@@ -113,5 +113,10 @@ namespace SimpleAudioConverter
         {
             SelectTargetSong();
         }
+
+        private void AboutThisMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Lol","About This",MessageBoxButton.OK);
+        }
     }
 }

@@ -15,6 +15,9 @@
                     <Separator/>
                     <MenuItem Header="_Exit" Click="MenuItem_Exit_Click"/>
                 </MenuItem>
+                <MenuItem Header="_About">
+                    <MenuItem x:Name="AboutThisMenu"  Header="_About This" Click="AboutThisMenu_Click"/>
+                </MenuItem>
             </Menu>
             <TextBlock Text="Select a flac song file to convert"
                     TextAlignment="Center"
