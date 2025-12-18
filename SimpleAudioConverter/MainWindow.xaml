@@ -10,22 +10,22 @@
         <StackPanel>
             <Menu>
                 <MenuItem Header="_File">
-                    <MenuItem Header="_Select File"/>
-                    <MenuItem Header="_Convert"/>
+                    <MenuItem Header="_Select File" Click="MenuItem_SelectFile_Click"/>
+                    <MenuItem Header="_Convert" Click="MenuItem_Convert_Click"/>
                     <Separator/>
-                    <MenuItem Header="_Exit"/>
+                    <MenuItem Header="_Exit" Click="MenuItem_Exit_Click"/>
                 </MenuItem>
             </Menu>
             <TextBlock Text="Select a flac song file to convert"
                     TextAlignment="Center"
                        FontSize="18" Margin="0,10,0,10"/>
-            <Button x:Name="SelectFileBtn" Content="Select File" Width="150" Height="30" Margin="0,10,0,10"/>
+            <Button x:Name="SelectFileBtn" Content="Select File" Width="150" Height="30" Margin="0,10,0,10" Click="SelectFileBtn_Click"/>
 
-            <Label Content="Song Selected: None selected..." HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10"/>
+            <Label x:Name="SongSelectionLabel" Content="Song Selected: None selected..." HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10"/>
 
-            <CheckBox HorizontalAlignment="Center" Content="Make copies both original and converted" Margin="0,10,0,10"/>
+            <CheckBox x:Name="copyFilesCheckBox"  HorizontalAlignment="Center" Content="Make copies both original and converted" Margin="0,10,0,10"/>
             
-            <Button x:Name="ConvertSongBtn" Content="Convert" Width="150" Height="30" Margin="0,10,0,10"/>
+            <Button x:Name="ConvertSongBtn" Content="Convert" Width="150" Height="30" Margin="0,10,0,10" Click="ConvertSongBtn_Click"/>
             
         </StackPanel>
     </Grid>
