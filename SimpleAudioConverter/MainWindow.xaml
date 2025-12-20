@@ -5,15 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleAudioConverter"
         mc:Ignorable="d"
-        Title="Flac to Mp3 Converter" Height="300" Width="350">
+        Title="Flac to Mp3 Converter" Height="300" Width="350"
+        ResizeMode="NoResize">
     <Grid>
         <StackPanel>
             <Menu>
                 <MenuItem Header="_File">
                     <MenuItem Header="_Select File" Click="MenuItem_SelectFile_Click"/>
                     <MenuItem Header="_Convert" Click="MenuItem_Convert_Click"/>
+                    <MenuItem Header="_Get FFmpeg" Click="MenuItem_Get_FFmpeg_Click"/>
                     <Separator/>
                     <MenuItem Header="_Exit" Click="MenuItem_Exit_Click"/>
+                </MenuItem>
+                <MenuItem Header="View">
+                    <MenuItem Header="_Open Converted Folder" Click="MenuItem_OpenConvertedFolder_Click"/>
                 </MenuItem>
                 <MenuItem Header="_About">
                     <MenuItem x:Name="AboutThisMenu"  Header="_About This" Click="AboutThisMenu_Click"/>

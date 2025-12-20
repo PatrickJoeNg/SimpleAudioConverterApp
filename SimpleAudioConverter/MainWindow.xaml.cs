@@ -22,11 +22,13 @@ namespace SimpleAudioConverter
 
         string? targetSongPath;
         string? targetOutputPath;
+        string? convertedFolderPath;
 
         public MainWindow()
         {
             InitializeComponent();
             CheckForFfmpeg();
+            CreateConvertedFolder();
         }
 
         private static void CheckForFfmpeg()
@@ -37,7 +39,6 @@ namespace SimpleAudioConverter
                 MessageBox.Show("ffmpeg.exe not found. Please make sure ffmpeg is in the same directory as this application.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private bool FileFieldCheck()
         {
             return targetOutputPath == null || targetSongPath == null ? true : false;
@@ -53,8 +54,9 @@ namespace SimpleAudioConverter
                 SongSelectionLabel.Content = dlg.SafeFileName;
             }
             targetSongPath = dlg.FileName;
-            targetOutputPath = System.IO.Path.ChangeExtension(dlg.FileName, ".mp3");
+            targetOutputPath = System.IO.Path.ChangeExtension(dlg.SafeFileName, ".mp3");
         }
+
         private void ConvertSongFile(string targetSong, string outputSong)
         {
             CheckForFfmpeg();
@@ -62,7 +64,7 @@ namespace SimpleAudioConverter
             startInfo.CreateNoWindow = true;
             startInfo.UseShellExecute = true;
             startInfo.FileName = "ffmpeg.exe";
-            startInfo.Arguments = $" -i \"{targetSong}\" \"{outputSong}\"";
+            startInfo.Arguments = $" -i \"{targetSong}\" \"{convertedFolderPath}\\{outputSong}\"";
 
             try
             {
@@ -78,6 +80,19 @@ namespace SimpleAudioConverter
             catch(System.Exception ex)
             {
                 MessageBox.Show($"An error occurred while converting the file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void CreateConvertedFolder()
+        {
+            //creates folder named Converted in the current directory
+            if (!Directory.Exists("Converted"))
+            {
+                MessageBox.Show("No folder for converted songs. Creating...","Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                Directory.CreateDirectory("Converted");
+            }
+            if(Directory.Exists("Converted"))
+            {
+                convertedFolderPath = System.IO.Path.GetFullPath("Converted");
             }
         }
         private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
@@ -116,7 +131,31 @@ namespace SimpleAudioConverter
 
         private void AboutThisMenu_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Lol","About This",MessageBoxButton.OK);
+            MessageBox.Show($"{convertedFolderPath}","About This",MessageBoxButton.OK);
+
+        }
+
+        private void MenuItem_Get_FFmpeg_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo startInfo = new()
+            {
+                FileName = "https://www.gyan.dev/ffmpeg/builds/#release-builds",
+                UseShellExecute = true
+            };
+
+            Process.Start(startInfo);
+        }
+
+        private void MenuItem_OpenConvertedFolder_Click(object sender, RoutedEventArgs e)
+        {
+            CreateConvertedFolder();
+            ProcessStartInfo startInfo = new()
+            {
+                FileName = convertedFolderPath,
+                UseShellExecute = true,
+                Verb = "open"
+            };
+            Process.Start(startInfo);
         }
     }
 }
