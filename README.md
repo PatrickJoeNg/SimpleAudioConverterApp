@@ -33,8 +33,8 @@ Explore audio processing and file handling
 
 This project relies on external audio processing libraries such as:
 
-- FFmpeg *(via wrapper or CLI integration)* 
-- NAudio *(optional, depending on implementation)*
+- FFmpeg *(via wrapper or CLI integration)*
+- app has link source to get ffmpeg precompiled for project
 
 Make sure required binaries are available on your system if applicable.
 
