@@ -131,7 +131,7 @@ namespace SimpleAudioConverter
 
         private void AboutThisMenu_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Program made by Patrick Ng.\nCredits to FFmpeg team, gyandev for precompliled.","About This",MessageBoxButton.OK);
+            MessageBox.Show($"Program made by Patrick Ng.\nCredits to FFmpeg team, gyandev for precompiled.","About This",MessageBoxButton.OK);
 
         }
 
