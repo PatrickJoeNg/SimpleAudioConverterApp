@@ -64,7 +64,7 @@ namespace SimpleAudioConverter
             startInfo.CreateNoWindow = true;
             startInfo.UseShellExecute = true;
             startInfo.FileName = "ffmpeg.exe";
-            startInfo.Arguments = $" -i \"{targetSong}\" \"{convertedFolderPath}\\{outputSong}\"";
+            startInfo.Arguments = $" -i \"{targetSong}\" -b:a 192k \"{convertedFolderPath}\\{outputSong}\"";
 
             try
             {
@@ -92,6 +92,7 @@ namespace SimpleAudioConverter
             }
             if(Directory.Exists("Converted"))
             {
+                //MessageBox.Show("Converted folder exists!\nSetting as current folder path.","Coverted Folder Check", MessageBoxButton.OK, MessageBoxImage.Information);
                 convertedFolderPath = System.IO.Path.GetFullPath("Converted");
             }
         }
@@ -127,6 +128,11 @@ namespace SimpleAudioConverter
         private void SelectFileBtn_Click(object sender, RoutedEventArgs e)
         {
             SelectTargetSong();
+        }
+
+        private void SelectFolderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
 
         private void AboutThisMenu_Click(object sender, RoutedEventArgs e)

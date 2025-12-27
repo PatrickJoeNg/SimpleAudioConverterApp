@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleAudioConverter"
         mc:Ignorable="d"
-        Title="Flac to Mp3 Converter" Height="300" Width="350"
+        Title="Flac to Mp3 Converter" Height="400" Width="350"
         ResizeMode="NoResize">
     <Grid>
         <StackPanel>
@@ -31,10 +31,13 @@
 
             <Label x:Name="SongSelectionLabel" Content="Song Selected: None selected..." HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10"/>
 
-            <CheckBox x:Name="copyFilesCheckBox"  HorizontalAlignment="Center" Content="Make copies both original and converted" Margin="0,10,0,10"/>
-            
             <Button x:Name="ConvertSongBtn" Content="Convert" Width="150" Height="30" Margin="0,10,0,10" Click="ConvertSongBtn_Click"/>
+
+            <Separator Margin="0,10,0,10"/>
             
+            <Label x:Name="DoBatchConvert" Content="Convert Folder of Songs" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10"/>
+
+            <Button x:Name="SelectFolderBtn" Content="Select Folder" Width="150" Height="30" Margin="0,10,0,10" Click="SelectFolderBtn_Click"/>
         </StackPanel>
     </Grid>
 </Window>
