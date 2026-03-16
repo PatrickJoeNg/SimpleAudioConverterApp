@@ -59,20 +59,44 @@ namespace SimpleAudioConverter
             targetOutputPath = System.IO.Path.ChangeExtension(dlg.SafeFileName, ".mp3");
         }
 
-        private void ConvertSongFile(string targetSong, string outputSong)
+        private async void ConvertSongFile(string targetSong, string outputSong)
         {
             CheckForFfmpeg();
+            ConsoleLogTextBox.Clear();
             ProcessStartInfo startInfo = new();
             startInfo.CreateNoWindow = true;
-            startInfo.UseShellExecute = true;
+            startInfo.UseShellExecute = false;
             startInfo.FileName = "ffmpeg.exe";
             startInfo.Arguments = $" -i \"{targetSong}\" -b:a 192k \"{convertedFolderPath}\\{outputSong}\"";
 
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = true;
+            
             try
             {
                 using (Process exeProcess = Process.Start(startInfo))
                 {
-                    exeProcess.WaitForExit();
+                    exeProcess.OutputDataReceived += (sender, e) =>
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            ConsoleLogTextBox.AppendText(e.Data + "\n");
+                            ConsoleLogTextBox.ScrollToEnd();
+                        });
+                    };
+                    exeProcess.ErrorDataReceived += (sender, e) =>
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            ConsoleLogTextBox.AppendText(e.Data + "\n");
+                            ConsoleLogTextBox.ScrollToEnd();
+                        });
+                    };
+
+                    exeProcess.BeginOutputReadLine();
+                    exeProcess.BeginErrorReadLine();
+
+                    await Task.Run (() => exeProcess.WaitForExit());
                     if(exeProcess.ExitCode == 0)
                     {
                         MessageBox.Show("File converted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -125,6 +149,7 @@ namespace SimpleAudioConverter
                 MessageBox.Show("Please select a song and output path before converting.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            ConsoleExpander.IsExpanded = true;
             ConvertSongFile(targetSongPath, targetOutputPath);
         }
         private void SelectFileBtn_Click(object sender, RoutedEventArgs e)
@@ -134,7 +159,7 @@ namespace SimpleAudioConverter
 
         private void SelectFolderBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            //TODO: Implement folder selection and batch conversion
         }
 
         private void AboutThisMenu_Click(object sender, RoutedEventArgs e)

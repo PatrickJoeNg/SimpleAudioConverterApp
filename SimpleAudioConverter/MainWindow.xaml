@@ -41,8 +41,8 @@
 
             <Button x:Name="SelectFolderBtn" Content="Select Folder" Width="150" Height="30" Margin="0,10,0,10" Click="SelectFolderBtn_Click"/>
 
-            <Expander Header="Console Log" ExpandDirection="Down">
-                <TextBox x:Name="ConsoleLogTextBlock" Margin="5" Height="300" Background="#FFF1F1F1" TextWrapping="WrapWithOverflow" IsReadOnly="True"  VerticalScrollBarVisibility="Auto"  BorderThickness="2,2,2,2" Text="Waiting for action..."/>
+            <Expander x:Name="ConsoleExpander" Header="Console Log" ExpandDirection="Down" IsExpanded="False">
+                <TextBox x:Name="ConsoleLogTextBox" Margin="5" Height="300" Background="#FFF1F1F1" TextWrapping="WrapWithOverflow"  VerticalScrollBarVisibility="Auto"  BorderThickness="2,2,2,2" Text="Waiting for action..." IsReadOnly="True"/>
             </Expander>
         </StackPanel>
     </Grid>
