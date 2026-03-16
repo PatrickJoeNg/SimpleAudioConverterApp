@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleAudioConverter"
         mc:Ignorable="d"
-        Title="Flac to Mp3 Converter" Height="400" Width="350"
-        ResizeMode="NoResize">
+        Title="Flac to Mp3 Converter" Height="430" Width="400"
+        ResizeMode="NoResize"
+        SizeToContent="Height"
+        >
     <Grid>
-        <StackPanel>
+        <StackPanel Margin="5" Background="AliceBlue">
             <Menu>
                 <MenuItem Header="_File">
                     <MenuItem Header="_Select File" Click="MenuItem_SelectFile_Click"/>
@@ -34,10 +36,14 @@
             <Button x:Name="ConvertSongBtn" Content="Convert" Width="150" Height="30" Margin="0,10,0,10" Click="ConvertSongBtn_Click"/>
 
             <Separator Margin="0,10,0,10"/>
-            
+
             <Label x:Name="DoBatchConvert" Content="Convert Folder of Songs" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10"/>
 
             <Button x:Name="SelectFolderBtn" Content="Select Folder" Width="150" Height="30" Margin="0,10,0,10" Click="SelectFolderBtn_Click"/>
+
+            <Expander Header="Console Log" ExpandDirection="Down">
+                <TextBox x:Name="ConsoleLogTextBlock" Margin="5" Height="300" Background="#FFF1F1F1" TextWrapping="WrapWithOverflow" IsReadOnly="True"  VerticalScrollBarVisibility="Auto"  BorderThickness="2,2,2,2" Text="Waiting for action..."/>
+            </Expander>
         </StackPanel>
     </Grid>
 </Window>

@@ -23,6 +23,8 @@ namespace SimpleAudioConverter
         string? targetSongPath;
         string? targetOutputPath;
         string? convertedFolderPath;
+        private double? originalWidth;
+        private const double ExpanderAdditionalWidth = 300; // width to add when expander opens
 
         public MainWindow()
         {
